@@ -1,10 +1,38 @@
-[gd_scene load_steps=7 format=3 uid="uid://7w105fl08kpk"]
+[gd_scene load_steps=22 format=3 uid="uid://7w105fl08kpk"]
 
+[ext_resource type="Script" uid="uid://c3gvhp5cyyihb" path="res://color_rect.gd" id="1_0h7mo"]
 [ext_resource type="Theme" uid="uid://cnjtetudthuan" path="res://addons/windows_95_theme/save1.tres" id="1_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://mb6x3jtys6xt" path="res://win95.png" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://cqap8sl3jkl2m" path="res://mouse.png" id="2_epypp"]
 [ext_resource type="Texture2D" uid="uid://cv570sdsxa55l" path="res://Flag.png" id="2_kdubu"]
+[ext_resource type="Texture2D" uid="uid://vo1gbdijot6t" path="res://my_computer.png" id="2_x0ka3"]
+[ext_resource type="Texture2D" uid="uid://c5nexlqyq0hj8" path="res://network.png" id="3_0h7mo"]
 [ext_resource type="Script" uid="uid://ci1nhugo6mriy" path="res://mouse.gd" id="3_0hol4"]
+[ext_resource type="Script" uid="uid://cxyr142t5tdij" path="res://panel.gd" id="3_kdubu"]
+[ext_resource type="Texture2D" uid="uid://c8brpoj8huc4w" path="res://icon.svg" id="4_d21ai"]
+[ext_resource type="Texture2D" uid="uid://b6cjxh4rqbj5x" path="res://inbox.png" id="4_nr8wp"]
+[ext_resource type="Texture2D" uid="uid://ckx28tokbh2c6" path="res://recycle_bin.png" id="5_d2bti"]
+[ext_resource type="Texture2D" uid="uid://deodpr6hx44lk" path="res://msn.png" id="9_ta5nu"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_flf07"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k73cj"]
+size = Vector2(640, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ka3"]
+size = Vector2(61, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7mo"]
+size = Vector2(66, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
+size = Vector2(25, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2bti"]
+size = Vector2(56, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta5nu"]
+size = Vector2(64, 22)
 
 [sub_resource type="ImageTexture" id="ImageTexture_0e48y"]
 
@@ -20,9 +48,99 @@ offset_right = 320.0
 offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(320, 240)
 color = Color(0, 0.501961, 0.501961, 1)
+script = ExtResource("1_0h7mo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect"]
+position = Vector2(-2, 452)
+physics_material_override = SubResource("PhysicsMaterial_flf07")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D"]
+position = Vector2(322, 14)
+shape = SubResource("RectangleShape2D_k73cj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ColorRect/StaticBody2D"]
+polygon = PackedVector2Array(2, 0, 2, -452, 642, -452, 642, 0, 658, 0, 658, -468, -14, -468, -14, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+position = Vector2(106.5, 123.5)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_d21ai")
+
+[node name="MyComputerBody" type="RigidBody2D" parent="ColorRect"]
+position = Vector2(37.5, 27.5)
+
+[node name="MyComputer" type="Sprite2D" parent="ColorRect/MyComputerBody"]
+texture_filter = 1
+texture = ExtResource("2_x0ka3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ColorRect/MyComputerBody"]
+polygon = PackedVector2Array(-10.5, -10.5, -10.5, -21.5, -9.5, -21.5, -9.5, -22.5, -8.5, -22.5, -8.5, -23.5, -7.5, -23.5, -7.5, -24.5, 10.5, -24.5, 10.5, -23.5, 11.5, -23.5, 11.5, -8.5, 13.5, -8.5, 13.5, -7.5, 14.5, -7.5, 14.5, 1.5, 13.5, 1.5, 13.5, 2.5, 12.5, 2.5, 12.5, 3.5, 11.5, 3.5, 11.5, 4.5, 10.5, 4.5, 10.5, 5.5, 9.5, 5.5, 9.5, 6.5, 8.5, 6.5, 8.5, 7.5, -15.5, 7.5, -15.5, 6.5, -16.5, 6.5, -16.5, 4.5, -15.5, 4.5, -15.5, 3.5, -14.5, 3.5, -14.5, 2.5, -13.5, 2.5, -13.5, -4.5, -12.5, -4.5, -12.5, -5.5, -10.5, -5.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/MyComputerBody"]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_x0ka3")
+
+[node name="NetworkBody" type="RigidBody2D" parent="ColorRect"]
+
+[node name="Network" type="Sprite2D" parent="ColorRect/NetworkBody"]
+texture_filter = 1
+position = Vector2(38, 109)
+texture = ExtResource("3_0h7mo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ColorRect/NetworkBody"]
+polygon = PackedVector2Array(26, 78, 25, 78, 39, 78, 39, 79, 40, 79, 40, 88, 50, 88, 50, 89, 51, 89, 51, 100, 53, 100, 53, 108, 51, 108, 51, 109, 33, 109, 33, 108, 32, 108, 32, 106, 30, 106, 30, 107, 25, 107, 25, 106, 21, 106, 21, 103, 26, 103, 26, 99, 22, 99, 22, 98, 21, 98, 21, 93, 22, 93, 22, 92, 23, 92, 23, 80, 24, 80, 24, 79, 25, 79, 25, 78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/NetworkBody"]
+position = Vector2(38, 128)
+shape = SubResource("RectangleShape2D_0h7mo")
+
+[node name="InboxBody" type="RigidBody2D" parent="ColorRect"]
+position = Vector2(38, 109)
+
+[node name="Inbox" type="Sprite2D" parent="ColorRect/InboxBody"]
+texture_filter = 1
+position = Vector2(-1, 67.5)
+texture = ExtResource("4_nr8wp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ColorRect/InboxBody"]
+polygon = PackedVector2Array(-11, 46, -9, 46, -9, 45, -7, 45, -7, 44, 5, 44, 5, 45, 7, 45, 7, 46, 9, 46, 9, 47, 10, 47, 10, 48, 11, 48, 11, 49, 12, 49, 12, 50, 13, 50, 13, 52, 15, 52, 15, 64, 13, 64, 13, 66, 12, 66, 12, 67, 11, 67, 11, 70, 9, 70, 9, 71, 7, 71, 7, 72, 5, 72, 5, 73, 3, 73, 3, 74, 1, 74, 1, 75, -1, 75, -1, 76, -3, 76, -3, 75, -5, 75, -5, 74, -7, 74, -7, 73, -9, 73, -9, 72, -11, 72, -11, 71, -13, 71, -13, 70, -15, 70, -15, 69, -17, 69, -17, 60, -15, 60, -15, 59, -13, 59, -13, 54, -12, 54, -12, 52, -11, 52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/InboxBody"]
+position = Vector2(-0.5, 86.5)
+shape = SubResource("RectangleShape2D_nr8wp")
+
+[node name="RecycleBinBody" type="RigidBody2D" parent="ColorRect"]
+
+[node name="RecycleBin" type="Sprite2D" parent="ColorRect/RecycleBinBody"]
+texture_filter = 1
+position = Vector2(38, 252.5)
+texture = ExtResource("5_d2bti")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ColorRect/RecycleBinBody"]
+polygon = PackedVector2Array(23, 232, 24, 232, 24, 231, 26, 231, 26, 230, 29, 230, 29, 229, 32, 229, 32, 228, 35, 228, 35, 229, 37, 229, 37, 230, 39, 230, 39, 231, 41, 231, 41, 232, 43, 232, 43, 233, 45, 233, 45, 234, 47, 234, 47, 235, 49, 235, 49, 236, 51, 236, 51, 237, 53, 237, 53, 241, 51, 241, 51, 245, 50, 245, 50, 249, 49, 249, 49, 253, 48, 253, 48, 257, 47, 257, 47, 258, 45, 258, 45, 259, 43, 259, 43, 260, 40, 260, 40, 259, 38, 259, 38, 258, 36, 258, 36, 257, 34, 257, 34, 256, 32, 256, 32, 255, 30, 255, 30, 254, 28, 254, 28, 253, 27, 253, 27, 249, 26, 249, 26, 245, 25, 245, 25, 241, 24, 241, 24, 237, 23, 237)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/RecycleBinBody"]
+position = Vector2(38, 271.5)
+shape = SubResource("RectangleShape2D_d2bti")
+
+[node name="MsnBody" type="RigidBody2D" parent="ColorRect"]
+
+[node name="Msn" type="Sprite2D" parent="ColorRect/MsnBody"]
+texture_filter = 1
+position = Vector2(38, 333)
+texture = ExtResource("9_ta5nu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ColorRect/MsnBody"]
+polygon = PackedVector2Array(21, 303, 53, 303, 53, 335, 22, 335, 22, 334, 21, 334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/MsnBody"]
+position = Vector2(38, 352)
+shape = SubResource("RectangleShape2D_ta5nu")
 
 [node name="Panel" type="Panel" parent="ColorRect"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -60,24 +178,25 @@ action_mode = 0
 text = "Start"
 icon = ExtResource("2_kdubu")
 expand_icon = true
+script = ExtResource("3_kdubu")
 
-[node name="Panel2" type="Panel" parent="ColorRect"]
+[node name="Panel2" type="Panel" parent="ColorRect/Panel"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 61.0
-offset_bottom = 20.0
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 59.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = 3.14159
 theme = ExtResource("1_q6r6c")
 
-[node name="Label" type="Label" parent="ColorRect/Panel2"]
+[node name="Label" type="Label" parent="ColorRect/Panel/Panel2"]
 layout_mode = 0
 offset_left = 59.0
 offset_top = 19.0
@@ -92,6 +211,8 @@ texture = SubResource("ImageTexture_0e48y")
 
 [node name="Win95" type="Sprite2D" parent="."]
 visible = false
+texture_filter = 1
+position = Vector2(0, 1)
 texture = ExtResource("1_wtcfe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -107,3 +228,5 @@ position = Vector2(-4.76837e-07, 0)
 texture = ExtResource("2_epypp")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
+
+[connection signal="pressed" from="ColorRect/Panel/Panel" to="ColorRect/Panel/Panel" method="_on_pressed"]
